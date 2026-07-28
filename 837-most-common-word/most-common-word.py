@@ -5,7 +5,7 @@ class Solution:
         
         p = paragraph.lower().split()
         freq_count = {}
-        banned_set = banned
+        banned_set = set(banned)
         for s in p:
             if s not in banned_set:
                 if s in freq_count:
