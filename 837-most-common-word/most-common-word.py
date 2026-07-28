@@ -3,11 +3,11 @@ class Solution:
         for char in "!?',;.":
             paragraph = paragraph.replace(char, " ")
         
-        p = paragraph.lower().replace(", ", " ").split()
+        p = paragraph.lower().split()
         freq_count = {}
-
+        banned_set = banned
         for s in p:
-            if s not in set(banned):
+            if s not in banned_set:
                 if s in freq_count:
                     freq_count[s] += 1
                 else:
