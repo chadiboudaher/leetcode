@@ -7,7 +7,7 @@ class Solution:
         freq_count = {}
 
         for s in p:
-            if s not in banned:
+            if s not in set(banned):
                 if s in freq_count:
                     freq_count[s] += 1
                 else:
