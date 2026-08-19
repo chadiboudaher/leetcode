@@ -1,22 +1,17 @@
 class Solution:
     def findRelativeRanks(self, score: List[int]) -> List[str]:
-        answer = [0] * len(score)
-        sorted_score = sorted(score, reverse=True)
-
-        map = {}
-
-        for i in range(len(score)):
-            if score[i] not in map:
-                map[score[i]] = [i+1, sorted_score.index(score[i])+1]
-
-        for val, key in map.items():
-            if key[1] == 1:
-                answer[key[0]-1] = "Gold Medal"
-            elif key[1] == 2:
-                answer[key[0]-1] = "Silver Medal"
-            elif key[1] == 3:
-                answer[key[0]-1] = "Bronze Medal"
+        sorted_pairs = sorted([(s, i) for i, s in enumerate(score)], reverse=True)
+        
+        answer = [""] * len(score)
+        
+        for rank, (s, original_idx) in enumerate(sorted_pairs, 1):
+            if rank == 1:
+                answer[original_idx] = "Gold Medal"
+            elif rank == 2:
+                answer[original_idx] = "Silver Medal"
+            elif rank == 3:
+                answer[original_idx] = "Bronze Medal"
             else:
-                answer[key[0]-1] = str(key[1])
-
+                answer[original_idx] = str(rank)
+        
         return answer
